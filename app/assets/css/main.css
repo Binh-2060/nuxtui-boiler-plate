@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@font-face {
+  font-family: "NotoSansLao";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/NotoSansLao-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "NotoSansLao";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/NotoSansLao-Bold.ttf") format("truetype");
+}
+
+/* app font for every Nuxt UI component and Tailwind's font-sans */
+@theme {
+  --font-sans: "NotoSansLao", sans-serif;
+}
