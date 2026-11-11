@@ -1,75 +1,57 @@
-# Nuxt Minimal Starter
+# Nuxt 4 + Nuxt UI Boilerplate
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A client-only static SPA starter: Nuxt 4, Nuxt UI 4 (Tailwind CSS 4), Pinia and Zod. It builds to static files and is served by nginx.
 
-## Setup
+## Requirements
 
-Make sure to install dependencies:
+- Node.js 22
+- Yarn 1 (`corepack enable` picks up the version pinned in `package.json`)
 
-```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Getting started
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+yarn install    # installs deps and runs nuxt prepare
+yarn dev        # http://localhost:3000 (VITE_APP_ENV=local)
 ```
 
-## Production
-
-Build the application for production:
+## Build
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+yarn generate   # static build → .output/public
 ```
 
-Locally preview production build:
+Docker (builds the app and serves it with nginx on http://localhost:8080):
 
 ```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
+docker compose up --build
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Configuration
+
+| What | Where |
+|---|---|
+| API base URL per environment (`local`, `develop`, `production`) | `app/configs/env.ts`, picked by `VITE_APP_ENV` |
+| App name and version | `app/app.config.ts` |
+| Theme colors | `app/app.config.ts` → `ui.colors` |
+| Fonts (Roboto for English, Noto Sans Lao for Lao) | `app/assets/css/main.css`, files in `public/fonts/` |
+| Icons | Lucide (`i-lucide-*`), bundled locally |
+
+## Project structure
+
+```
+app/
+  core/          apiRequest and ApiError
+  data/          networks, repositories, builders, mappers
+  models/        entities, forms, requestbody, responsebody
+  stores/        Pinia stores
+  composables/   useDialog, catchError, navigation and date helpers
+  components/    UI; components/global/* get the Global prefix
+  consts/        messages and zod form rules
+  pages/ layouts/
+docs/api/        API specs (copy template.md per feature)
+.ai/rules/       coding rules for people and AI agents
+```
+
+## Contributing
+
+Read `AGENTS.md` and `.ai/rules/` before you start. Work on a branch (never commit to `main` or `develop`) and use the commit format `<branch> <TYPE>:: <message>`.

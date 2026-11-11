@@ -22,7 +22,7 @@ Topic rules aren't loaded automatically. Before you plan or edit code in an area
 
 Package manager is **yarn** (v1, pinned via `packageManager`).
 
-- `yarn install`: installs deps. `postinstall` runs `nuxt prepare` (regenerates `.nuxt/` types, which `tsconfig.json` extends).
+- `yarn install`: installs deps. `postinstall` runs `nuxt prepare` (regenerates the `.nuxt/` types that `tsconfig.json` references).
 - `yarn dev`: dev server on http://localhost:3000 with `VITE_APP_ENV=local`.
 - `yarn generate`: static build (the production path) → `.output/public`. Stamps `BUILD_DATE`. Does **not** type-check.
 - Type-check: `npx nuxt prepare && npx -y -p typescript@5 -p vue-tsc@2 vue-tsc --noEmit -p .nuxt/tsconfig.app.json`. Run `nuxt prepare` first: `yarn generate` writes its types to a cache folder, so `.nuxt/` can be stale. `vue-tsc` isn't a dependency, so `nuxi typecheck` fails.
@@ -49,4 +49,4 @@ Nuxt 4 + Nuxt UI 4 (Tailwind CSS 4) + Pinia. Source lives in `app/`. `@/` and `~
 - `dayjs-nuxt` uses timezone `Asia/Bangkok`. Access it with `useDayjs()`.
 - Theme: semantic colors in `app.config.ts` → `ui.colors`. App fonts (Roboto for English, Noto Sans Lao for Lao, both self-hosted in `public/fonts/`, with system fallbacks) and Tailwind `@theme` in `assets/css/main.css`. Light mode only (`ui.colorMode: false` in `nuxt.config.ts`).
 - Icons: Lucide (`i-lucide-*`) from the local `@iconify-json/lucide` collection. `nuxt.config.ts` bundles the icons found in source and never calls the Iconify API (`fallbackToApi: false`).
-- `plugins/pinia.ts` registers `pinia-plugin-persistedstate`. `runtimeConfig.public` exposes `BUILD_DATE` and `APP_ENV`. `app.config.ts` holds the app name, version and theme.
+- `plugins/pinia.ts` registers `pinia-plugin-persistedstate`. `runtimeConfig.public` exposes `BUILD_DATE` and `APP_ENV`. `app.config.ts` holds the app name, version and theme. The API base URL per environment lives only in `configs/env.ts` (picked by `VITE_APP_ENV`, read by `core/api.ts`).
