@@ -32,5 +32,5 @@ Use Nuxt UI first, then Tailwind utility classes. Write custom CSS only when nei
 - No inline `style="..."` or `:style` for things a prop or utility class can do.
 - When you do need CSS, put it in `<style scoped>` in that component, and prefer `@apply` with Tailwind utilities over raw values.
 - `assets/css/main.css` holds the Tailwind and Nuxt UI imports, the `@font-face` rules and `@theme`. Ask before you change it.
-- Don't set `font-family`. The app font (Noto Sans Lao) is set globally through `--font-sans` in `@theme`.
+- Don't set `font-family`. The app font is set globally through `--font-sans` in `@theme`: Roboto for English and Noto Sans Lao for Lao, picked per character by `unicode-range`, then system fonts as fallback. Mixed Lao and English text needs no extra classes.
 - Avoid `!important`. If you can't avoid it, explain why in a short comment.

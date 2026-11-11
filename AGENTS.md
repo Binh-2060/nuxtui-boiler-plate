@@ -47,6 +47,6 @@ Nuxt 4 + Nuxt UI 4 (Tailwind CSS 4) + Pinia. Source lives in `app/`. `@/` and `~
 - `consts/rules.ts`: shared **zod** schemas for form fields (`rules.VALIDATE`, `rules.MAX_LENGTH(n)`).
 - `docs/api/README.md`: the response envelope. `docs/api/template.md`: copy it to start `docs/api/<feature>.md`.
 - `dayjs-nuxt` uses timezone `Asia/Bangkok`. Access it with `useDayjs()`.
-- Theme: semantic colors in `app.config.ts` → `ui.colors`. App font (Noto Sans Lao, from `public/fonts/`) and Tailwind `@theme` in `assets/css/main.css`. Light mode only (`ui.colorMode: false` in `nuxt.config.ts`).
+- Theme: semantic colors in `app.config.ts` → `ui.colors`. App fonts (Roboto for English, Noto Sans Lao for Lao, both self-hosted in `public/fonts/`, with system fallbacks) and Tailwind `@theme` in `assets/css/main.css`. Light mode only (`ui.colorMode: false` in `nuxt.config.ts`).
 - Icons: Lucide (`i-lucide-*`) from the local `@iconify-json/lucide` collection. `nuxt.config.ts` bundles the icons found in source and never calls the Iconify API (`fallbackToApi: false`).
 - `plugins/pinia.ts` registers `pinia-plugin-persistedstate`. `runtimeConfig.public` exposes `BUILD_DATE` and `APP_ENV`. `app.config.ts` holds the app name, version and theme.
